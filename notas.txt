@@ -1,0 +1,37 @@
+npm run dev || npm start = para correr terminal
+
+
+-DataTypes: Es un objeto que contiene todos los tipos de datos que puedes usar en Sequelize, como STRING, INTEGER, DATE, etc.
+-Aquí defines un modelo Sequelize llamado Cliente. con el .define
+Sequelize lo usará para mapearlo a una tabla en tu base de datos.
+
+-type: DataTypes.STRING: El campo será un texto (cadena).
+
+primaryKey: true: Este campo será la clave primaria de la tabla.
+
+allowNull: false: No se permite que el valor sea NULL (es obligatorio).
+
+unique: true: No puede haber dos registros con el mismo valor de CUIT.
+
+👉 allowNull indica si el campo puede ser NULL. Si es false, Sequelize (y la base de datos) exigirá que el campo tenga un valor. por ejemplo en el caso de la direccion que se encuentra en true significa que no sera obligatorio es decir sera opcional.
+
+-tableName
+Sequelize por defecto pone en plural el nombre del modelo (Cliente → Clientes), pero con esta opción fijas manualmente el nombre exacto de la tabla en la base de datos.
+
+Aquí le dices: usa la tabla llamada clientes.
+
+-timestamps
+Por defecto, Sequelize agrega automáticamente dos columnas a la tabla: createdAt y updatedAt.
+
+Al poner timestamps: false, desactivas esa funcionalidad porque tal vez no necesitas esas columnas.
+
+¿Cuándo conviene usar timestamps: true?
+En sistemas donde quieres rastrear cuándo se crean o actualizan los datos, como:
+
+Usuarios
+
+Pedidos
+
+Publicaciones
+
+Comentarios
