@@ -6,11 +6,25 @@ const Camionero = sequelize.define('Camionero',{
         type:DataTypes.STRING,
         primaryKey:true,
         allowNull:false,
-        unique:true,
+        validate:{
+            notEmpty:true,
+            len:[3,11]
+        }
+    },
+    nombre:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        validate:{
+            notEmpty:true,
+            len:[3,25]
+        }
     },
     direccion:{
         type:DataTypes.STRING,
         allowNull:false,
+        validate:{
+            notEmpty:true
+        }
     },
     salario:{
         type:DataTypes.FLOAT,

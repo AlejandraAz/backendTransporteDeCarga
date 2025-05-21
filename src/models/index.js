@@ -8,12 +8,12 @@ import  Camion  from "./camion.js";
 
 /*Relación de 1:N */
 Provincia.hasMany(Paquete,{     //lEntiendo que provincia tiene muchos paq, y que defino la FK y en sourceKey menciono de  que viene de la clave
-    foreignKey:'idProvincia',
+    foreignKey:'provinciaId',
     sourceKey:'id'
 });
 
 Paquete.belongsTo(Provincia,{
-    foreignKey:'idProvincia',
+    foreignKey:'provinciaId',
     targetKey:'id'
 });
 
@@ -33,13 +33,28 @@ Paquete.belongsTo(Camionero,{
 Camion.belongsToMany(Camionero,{
     through: 'CamionCamionero',
     foreignKey:'patenteCamion',
-    otherKey:'cuilCamionero'
+    otherKey:'cuilCamionero',
+    as:'camioneros'
 });
 Camionero.belongsToMany(Camion,{
     through:'CamionCamionero',
     foreignKey:'cuilCamionero',
-    otherKey:'patenteCamion'
+    otherKey:'patenteCamion',
+    as:'camiones'
 });
+//***** */
+CamionCamionero.belongsTo(Camion, {
+    foreignKey: 'patenteCamion',
+    targetKey: 'patente',
+    as:'camion'
+});
+
+CamionCamionero.belongsTo(Camionero, {
+    foreignKey: 'cuilCamionero',
+    targetKey: 'cuil',
+    as:'camionero'
+});
+
 
 //Esto te permite mantener tus modelos bien organizados y centralizar todas las asociaciones y relaciones en un solo lugar, al trasladarlos al index.js de la raíz
 export {
@@ -50,3 +65,4 @@ export {
     Paquete,
     Provincia
 };
+// sequelize.sync({ alter: true });

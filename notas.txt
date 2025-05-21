@@ -35,3 +35,14 @@ Pedidos
 Publicaciones
 
 Comentarios
+
+¿Para qué sirve el soft delete?
+Porque a veces no conviene borrar datos permanentemente, por razones como:
+
+🔄 Poder recuperar el registro después (deshacer la eliminación).
+
+📊 Mantener el historial o auditoría (ej.: “este camión existió, pero fue dado de baja”).
+
+🛑 Evitar errores por eliminar datos que otros usan.
+
+No olvidar instalar la carpeta node_modules para trabajar nuevamente npm install
